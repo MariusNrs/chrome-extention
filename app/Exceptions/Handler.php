@@ -44,6 +44,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception))
+        {
+            {
+                $status = $exception->getStatusCode();
+                return response()->json(['error' => $status], $status);
+            }
+        }
         return parent::render($request, $exception);
     }
 
@@ -57,9 +64,9 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json(['error' => 'Not Found'], 404);
         }
 
-        return redirect()->guest(route('login'));
+        return redirect()->json(['error' => 'Unauthorized'], 403);
     }
 }

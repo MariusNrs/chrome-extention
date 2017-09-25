@@ -21,6 +21,7 @@ class CEUser extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'ce_users';
     protected $fillable = [
         'name', 'email', 'password',
     ];
