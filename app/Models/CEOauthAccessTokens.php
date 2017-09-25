@@ -9,7 +9,13 @@
 namespace App\Models;
 
 
-class CEOauthAccessTokens
-{
+use Illuminate\Database\Eloquent\Model;
 
+class CEOauthAccessTokens extends Model
+{
+    protected $table = 'oauth_access_tokens';
+
+    protected $fillable = [
+        'id', 'user_id', 'client_id', 'name', 'scopes', 'revoked', 'expires_at'
+    ];
 }

@@ -9,7 +9,11 @@
 namespace App\Models;
 
 
-class CEProjectsCandidates
-{
+use Illuminate\Database\Eloquent\Model;
 
+class CEProjectsCandidates extends Model
+{
+    protected $table = 'project_candidate';
+
+    protected $fillable =  ['project_id', 'candidate_id', 'assigner_id'];
 }

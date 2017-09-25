@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::group(['prefix' => 'api/v1/app'], function () {
+    Route::post('/login', 'CEUserController@login');
+    Route::post('/details', 'CEUserController@details');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
